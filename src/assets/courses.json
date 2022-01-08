@@ -1,4 +1,6 @@
 [
   { "_id": "1", "name": "Angular", "category": "frontend" },
-  { "_id": "2", "name": "JAVA", "category": "backend" }
+  { "_id": "2", "name": "JAVA", "category": "backend" },
+  { "_id": "3", "name": "PHP", "category": "backend" },
+  { "_id": "4", "name": "JavaScript", "category": "fullstack" }
  ]

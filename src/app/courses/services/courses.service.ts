@@ -5,20 +5,15 @@ import { delay } from 'rxjs';
 import { Course } from '../model/course';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursesService {
-
   private readonly API = '/assets/courses.json';
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  constructor(private httpClient: HttpClient) {}
 
   list() {
-     return this.httpClient.get<Course[]>(this.API)
-      .pipe(
-        delay(5000)
-      );
+    return this.httpClient.get<Course[]>(this.API)
+      //.pipe(delay(5000));
   }
 }

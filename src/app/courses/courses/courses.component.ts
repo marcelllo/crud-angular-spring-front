@@ -20,7 +20,6 @@ export class CoursesComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.courses$ = this.courseService.list().pipe(
-      delay(2000),
       catchError(e => {
         this.onError('Erro ao carregar cursos.');
         return of([]);
