@@ -1,3 +1,12 @@
 mat-card {
   padding: 16px;
 }
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 26px;
+  background-color: rgba($color: #000000, $alpha: 0.15);
+}
