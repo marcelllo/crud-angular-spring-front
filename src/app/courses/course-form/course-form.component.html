@@ -9,7 +9,11 @@
 
       <mat-form-field>
         <mat-label>Categoria</mat-label>
-        <input matInput formControlName="category" />
+        <mat-select formControlName="category">
+          <mat-option value=""></mat-option>
+          <mat-option value="front-end">Frond-End</mat-option>
+          <mat-option value="back-end">Back-End</mat-option>
+        </mat-select>
       </mat-form-field>
     </form>
   </mat-card-content>
