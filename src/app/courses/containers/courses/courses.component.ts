@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
-import { Course } from '../model/course';
-import { CoursesService } from './../services/courses.service';
+import { Course } from '../../model/course';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -18,6 +18,8 @@ export class CoursesComponent {
   constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.courses$ = this.coursesService.list()
       .pipe(
@@ -35,7 +37,7 @@ export class CoursesComponent {
   }
 
   onAdd() {
-
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
 
 }
