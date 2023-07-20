@@ -22,13 +22,14 @@ export class CourseFormComponent {
     private service: CoursesService,
     private snakeBar: MatSnackBar,
     private location: Location
-  ) { }
+  ) {
+  }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe(
-      result => this.onSuccess(),
-      error => this.onError()
-    );
+    this.service.save(this.form.value).subscribe({
+      next: () => this.onSuccess(),
+      error: () => this.onError()
+    });
   }
 
   onCancel() {
