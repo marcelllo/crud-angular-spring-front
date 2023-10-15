@@ -1,3 +1,4 @@
+import { ConfirmationDialogComponent } from './../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -50,15 +51,23 @@ export class CoursesComponent {
   }
 
   onRemove(course: Course) {
-    this.coursesService.remove(course._id).subscribe(() => {
-      this.loadAll();
-      this.snakeBar.open('Curso excluído com sucesso!', '', {
-        duration: 5000,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
-    },
-    error => this.onError('Erro ao tentar remover curso!'));
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: `Deseja realmente excluir o curso ${course.name}?`,
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.coursesService.remove(course._id).subscribe(() => {
+          this.loadAll();
+          this.snakeBar.open('Curso excluído com sucesso!', '', {
+            duration: 5000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+        },
+        error => this.onError('Erro ao tentar remover curso!'));
+      }
+    });
   }
 
 }
