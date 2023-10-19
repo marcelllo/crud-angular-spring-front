@@ -15,3 +15,25 @@ mat-card {
     justify-content: center;
   }
 }
+
+
+.lessons-container {
+  padding-top: 10px;
+
+  .lessons-item {
+    display: flex;
+    gap: 10px;
+
+    .lesson-name {
+      width: 65%;
+    }
+
+    .lesson-link {
+      flex: 1;
+    }
+
+    .lesson-button {
+      display: flex;
+    }
+  }
+}

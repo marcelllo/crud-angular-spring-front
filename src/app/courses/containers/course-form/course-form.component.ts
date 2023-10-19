@@ -35,10 +35,16 @@ export class CourseFormComponent implements OnInit {
       category: [course.category, [Validators.required]],
       lessons: this.fb.array(this.retrieveLessons(course))
     });
+  }
 
-    console.log(this.form)
-    console.log(this.form.value);
+  addNewLesson() {
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    lessons.push(this.createLesson());
+  }
 
+  removeLesson(i: number) {
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    lessons.removeAt(i);
   }
 
   getLessonsFormArray() {
