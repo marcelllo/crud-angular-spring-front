@@ -39,7 +39,8 @@
             </div>
             <div class="lesson-link">
               <mat-form-field class="full-width">
-                <span matPrefix>https://youtu.be/</span>
+                <mat-label>URL</mat-label>
+                <span matTextPrefix>https://youtu.be/</span>
                 <input matInput formControlName="youtubeLink" />
                 <mat-error *ngIf="getLessonsFormArray()[i].get('youtubeLink')?.invalid" class="form-array-error">Campo inválido</mat-error>
 
