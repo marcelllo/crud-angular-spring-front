@@ -25,6 +25,7 @@
           <mat-icon aria-label="adicionar uma nova aula">add</mat-icon>
         </button>
       </mat-toolbar>
+      <mat-error *ngIf="isFormArrayRequired()" class="form-array-error">Adicione pelo menos uma aula</mat-error>
 
       <div class="lessons-container" formArrayName="lessons"
         *ngFor="let lesson of getLessonsFormArray(); let i = index">
@@ -33,12 +34,15 @@
               <mat-form-field class="full-width">
                 <mat-label>Nome da aula</mat-label>
                 <input matInput formControlName="name" />
+                <mat-error *ngIf="getLessonsFormArray()[i].get('name')?.invalid" class="form-array-error">Campo inválido</mat-error>
               </mat-form-field>
             </div>
             <div class="lesson-link">
               <mat-form-field class="full-width">
                 <span matPrefix>https://youtu.be/</span>
                 <input matInput formControlName="youtubeLink" />
+                <mat-error *ngIf="getLessonsFormArray()[i].get('youtubeLink')?.invalid" class="form-array-error">Campo inválido</mat-error>
+
               </mat-form-field>
             </div>
             <div class="lesson-button">
