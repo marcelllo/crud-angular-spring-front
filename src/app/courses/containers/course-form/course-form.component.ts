@@ -1,3 +1,4 @@
+import { FormUtilsService } from './../../../shared/form/form-utils.service';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, UntypedFormArray, Validators } from '@angular/forms';
@@ -22,7 +23,8 @@ export class CourseFormComponent implements OnInit {
     private service: CoursesService,
     private snakeBar: MatSnackBar,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public formUtils: FormUtilsService
   ) {
   }
 
@@ -77,7 +79,7 @@ export class CourseFormComponent implements OnInit {
         error: () => this.onError()
       });
     } else {
-      this.snakeBar.open('Formulário inválido')
+      this.formUtils.checkAllFormValidations(this.form);
     }
   }
 
@@ -92,30 +94,5 @@ export class CourseFormComponent implements OnInit {
 
   private onError() {
     this.snakeBar.open('Erro ao salvar curso.', '', { duration: 5000 })
-  }
-
-  getErrorMessage(fieldName: string) {
-    const field = this.form.get(fieldName);
-
-    if (field?.hasError('required')) {
-      return 'Campo obrigatório.';
-    }
-
-    if (field?.hasError('minlength')) {
-      const requiredLength = field.errors ? field.errors['minlength']['requiredLength'] : 0;
-      return `O tamanho mínimo do campo é ${requiredLength} caracteres.`;
-    }
-
-    if (field?.hasError('maxlength')) {
-      const requiredLength = field.errors ? field.errors['maxlength']['requiredLength'] : 0;
-      return `O tamanho máximo do campo é ${requiredLength} caracteres.`;
-    }
-
-    return 'Valor inválido';
-  }
-
-  isFormArrayRequired() {
-    const lessons = this.form.get('lessons') as UntypedFormArray;
-    return !lessons.valid && lessons.hasError('required') && lessons.touched;
   }
 }
